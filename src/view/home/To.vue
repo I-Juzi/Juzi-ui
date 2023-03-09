@@ -1,15 +1,14 @@
 <template>
-  <div id="app">
-    <router-view/>
-  </div>
+  <basic-container>
+    <p>首页</p>
+  </basic-container>
 </template>
 
 <script>
 export default {
-  name: 'App'
+  name: "to"
 }
 </script>
-
 
 <style scoped>
 
