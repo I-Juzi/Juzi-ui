@@ -74,6 +74,7 @@
           <!--主体        -->
           <el-main style="margin-top: -19px">
             <index>
+              {{$staConf.URL}}
             </index>
           </el-main>
 

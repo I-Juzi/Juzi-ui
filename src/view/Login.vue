@@ -4,7 +4,7 @@
       <el-image class="logo_login" :src="log_url" fit="cover"></el-image>
 
       <p class="login_title">登 录</p>
-      <p class="login_desc">欢&nbsp;迎&nbsp; 光&nbsp; 临</p>
+      <p class="login_desc">T e s i o n</p>
 
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
         <el-form-item label="账号" prop="pass">
@@ -21,8 +21,6 @@
           <el-button @click="resetForm('ruleForm')">重置</el-button>
         </el-form-item>
       </el-form>
-
-
     </el-card>
 
     <p class="footer"> Copyright @Juzi All Right Reserved</p>
@@ -104,6 +102,7 @@ export default {
           //简单登录，路由跳转
           try {
             this.$router.push({path:'/home/to'})
+
           }catch (e) {
             alert(e)
           }
@@ -160,6 +159,8 @@ export default {
 .login_desc{
   letter-spacing: 2px;
   color: #999a99;
+  font-family:'华文行楷';
+  font-size: 20px;
 }
 .footer {
   z-index: 9999;
@@ -168,5 +169,8 @@ export default {
   width: 100%;
   text-align: center;
 }
-
+.demo-ruleForm{
+  margin-left: -20px;
+  margin-right: 60px;
+}
 </style>
