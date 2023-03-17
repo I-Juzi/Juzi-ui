@@ -19,3 +19,7 @@ npm run build --report
 ```
 
 ## 天行智控后台管理系统-UI
+
+# 环境版本
+node.js: 16.15.1
+
