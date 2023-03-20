@@ -3,16 +3,28 @@
     <el-container class="el_container">
 
 
-      <el-header style="display: flex;  align-items:center; justify-content: flex-end; background-color: #4099ef">
-        <el-row class="demo-avatar" >
-          <el-col style="text-align: right">
-            <el-avatar  :size="50" :src="circleUrl"></el-avatar>
-          </el-col>
-        </el-row>
+      <el-header style="display: flex;  align-items:center; justify-content: flex-end; background-color: #4099ef" >
+        <div @click="$router.push('/home/info')">
+          <el-avatar  :size="50" :src="circleUrl" ></el-avatar>
+        </div>
+
+
 
         <el-row class="demo-avatar" style="margin-left: 10px;">
           <el-col style="text-align: right">
-            <p style="color: #f5f5fd">用户名</p>
+            <el-dropdown>
+              <span class="el-dropdown-link" style="color: #f5f5fd">
+                {{username}}<i class="el-icon-arrow-down el-icon--right"></i>
+              </span>
+              <el-dropdown-menu slot="dropdown">
+                <div @click="$router.push('/home/info')">
+                  <el-dropdown-item icon="el-icon-edit" >信息修改</el-dropdown-item>
+                </div>
+                <div @click="$router.push('/')">
+                  <el-dropdown-item icon="el-icon-s-operation">退出登录</el-dropdown-item>
+                </div>
+              </el-dropdown-menu>
+            </el-dropdown>
           </el-col>
         </el-row>
       </el-header>
@@ -74,7 +86,7 @@
           <!--主体        -->
           <el-main style="margin-top: -19px">
             <index>
-              {{$staConf.URL}}
+                <router-view>{{$staConf.URL}}</router-view>
             </index>
           </el-main>
 
@@ -103,12 +115,15 @@ export default {
       editPasswordRole:{},
       aside_width:'',
       circleUrl:iii,
-
+      username:'管理员',
     }
   },
   mounted() {
   },
   methods:{
+    aaa(){
+      alert("...")
+    },
     handleIsCollapse(){
       this.isCollapse = !this.isCollapse
       if (this.isCollapse){
@@ -127,6 +142,9 @@ export default {
       //sessionStorage.setItem("acticePath",activePath);
       this.activePath = activePath
     },
+    t_1(){
+      alert('111')
+    }
   },
   created() {
     this.activePath = sessionStorage.getItem("activePath")? sessionStorage.getItem("activePath") :"/index";

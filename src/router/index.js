@@ -32,6 +32,10 @@ const router =  new Router({
           path:'/home/test',
           name:'test',
           component:()=>import('@/view/test/index.vue')
+        },{
+          path:'/home/info',
+          name:'info',
+          component:()=>import('@/view/userinfo/index.vue')
         }
       ]
     }

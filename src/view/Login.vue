@@ -10,8 +10,8 @@
         <el-form-item label="账号" prop="pass">
           <el-input type="text" v-model="ruleForm.pass" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="checkPass">
-          <el-input type="password" v-model="ruleForm.checkPass" autocomplete="off"></el-input>
+        <el-form-item label="密码" prop="password">
+          <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
         </el-form-item>
 <!--        <el-form-item label="验证码" prop="age">
           <el-input v-model.number="ruleForm.age"></el-input>
@@ -52,17 +52,17 @@ export default {
       }, 1000);
     };
 */
-    var validatePass = (rule, value, callback) => {
+    var validateUser = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入用户名'));
       } else {
-        if (this.ruleForm.checkPass !== '') {
-          this.$refs.ruleForm.validateField('checkPass');
+        if (this.ruleForm.password !== '') {
+          this.$refs.ruleForm.validateField('password');
         }
         callback();
       }
     };
-    var validatePass2 = (rule, value, callback) => {
+    var passwordValidate = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请输入密码'));
       } {
@@ -71,19 +71,29 @@ export default {
     };
     return {
       log_url: require("@/assets/logo.png"),
+      loginFrom:{
+        username:'',
+        password:'',
+        grant_type:'password',
+        client_id:'app',
+        client_secret:'app',
+      },
       ruleForm: {
         pass: '',
-        checkPass: '',
+        password: '',
+        grant_type:'password',
+        client_id:'app',
+        client_secret:'app',
 /*
         age: ''
 */
       },
       rules: {
         pass: [
-          { validator: validatePass, trigger: 'blur' }
+          { validator: validateUser, trigger: 'blur' }
         ],
-        checkPass: [
-          { validator: validatePass2, trigger: 'blur' }
+        password: [
+          { validator: passwordValidate, trigger: 'blur' }
         ],
 /*        age: [
           { validator: checkAge, trigger: 'blur' }
@@ -100,12 +110,14 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           //简单登录，路由跳转
-          try {
-            this.$router.push({path:'/home/to'})
-
-          }catch (e) {
-            alert(e)
-          }
+            //
+          //Object.assign()
+          //this.$router.push({path:'/home/to'})
+             this.$http.post("/oauth/token",this.ruleForm).then(res=>{
+              console.log(res.data)
+            }).catch(e => {
+              console.log(e)
+            })
         } else {
           console.log('error submit!!');
           return false;

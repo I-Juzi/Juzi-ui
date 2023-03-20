@@ -21,9 +21,9 @@ Vue.prototype.$staConf = staConf;
 
 //引入axios
 import axios from 'axios'
-Vue.prototype.$axios = axios
+Vue.prototype.$http = axios
 //配置接口请求前缀地址
-axios.defaults.baseURL = '/juzi-ui'
+axios.defaults.baseURL = 'http://192.168.31.148:9527'
 //拦截请求，设置全局token
 axios.interceptors.request.use(function (config) {
    let token = sessionStorage.getItem('token')
