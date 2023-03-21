@@ -24,6 +24,7 @@ import axios from 'axios'
 Vue.prototype.$http = axios
 //配置接口请求前缀地址
 axios.defaults.baseURL = 'http://192.168.31.148:9527'
+axios.defaults.timeout = 3000
 //拦截请求，设置全局token
 axios.interceptors.request.use(function (config) {
    let token = sessionStorage.getItem('token')

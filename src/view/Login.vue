@@ -7,10 +7,10 @@
       <p class="login_desc">T e s i o n</p>
 
       <el-form :model="ruleForm" status-icon :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
-        <el-form-item label="账号" prop="pass">
+        <el-form-item label="账 号" prop="pass">
           <el-input type="text" v-model="ruleForm.pass" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="密码" prop="password">
+        <el-form-item label="密 码" prop="password">
           <el-input type="password" v-model="ruleForm.password" autocomplete="off"></el-input>
         </el-form-item>
 <!--        <el-form-item label="验证码" prop="age">
@@ -71,22 +71,12 @@ export default {
     };
     return {
       log_url: require("@/assets/logo.png"),
-      loginFrom:{
-        username:'',
-        password:'',
-        grant_type:'password',
-        client_id:'app',
-        client_secret:'app',
-      },
       ruleForm: {
         pass: '',
         password: '',
         grant_type:'password',
         client_id:'app',
         client_secret:'app',
-/*
-        age: ''
-*/
       },
       rules: {
         pass: [
@@ -95,9 +85,6 @@ export default {
         password: [
           { validator: passwordValidate, trigger: 'blur' }
         ],
-/*        age: [
-          { validator: checkAge, trigger: 'blur' }
-        ]*/
       }
     };
   },
@@ -110,14 +97,25 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           //简单登录，路由跳转
-            //
-          //Object.assign()
-          //this.$router.push({path:'/home/to'})
-             this.$http.post("/oauth/token",this.ruleForm).then(res=>{
-              console.log(res.data)
-            }).catch(e => {
-              console.log(e)
-            })
+          var from = new FormData();
+          from.append('grant_type','password')
+          from.append('client_secret','app')
+          from.append('client_id','app')
+          from.append('username',this.ruleForm.pass)
+          from.append('password',this.ruleForm.password)
+          this.$http.post("/oauth/token",from).then(res=>{
+            if (res.data.access_token){
+              console.log(res.data.authorities[0])
+              localStorage.setItem("access_token",res.data.access_token)
+              localStorage.setItem("refresh_token",res.data.refresh_token)
+              //this.$router.push({path:'/home/to'})
+            }else {
+              this.$message.info("用户名或密码错误")
+            }
+          }).catch(e => {
+            this.$message.error("系统异常啦")
+            console.log(e)
+          })
         } else {
           console.log('error submit!!');
           return false;
@@ -171,13 +169,13 @@ export default {
 .login_desc{
   letter-spacing: 2px;
   color: #999a99;
-  font-family:'华文行楷';
+  font-family:'华文行楷',serif;
   font-size: 20px;
 }
 .footer {
   z-index: 9999;
   position: fixed;
-  bottom: 0px;
+  bottom: 0;
   width: 100%;
   text-align: center;
 }
