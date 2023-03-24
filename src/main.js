@@ -16,6 +16,7 @@ Vue.prototype.$echarts = echarts
 //注册全局容器
 import basicContainer from '@/view/index/index.vue'
 Vue.component('basicContainer',basicContainer)
+
 import staConf from '@/js/enum'
 Vue.prototype.$staConf = staConf;
 

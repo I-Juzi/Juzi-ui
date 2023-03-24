@@ -97,25 +97,26 @@ export default {
       this.$refs[formName].validate((valid) => {
         if (valid) {
           //简单登录，路由跳转
-          var from = new FormData();
-          from.append('grant_type','password')
-          from.append('client_secret','app')
-          from.append('client_id','app')
-          from.append('username',this.ruleForm.pass)
-          from.append('password',this.ruleForm.password)
-          this.$http.post("/oauth/token",from).then(res=>{
-            if (res.data.access_token){
-              console.log(res.data.authorities[0])
-              localStorage.setItem("access_token",res.data.access_token)
-              localStorage.setItem("refresh_token",res.data.refresh_token)
-              //this.$router.push({path:'/home/to'})
-            }else {
-              this.$message.info("用户名或密码错误")
-            }
-          }).catch(e => {
-            this.$message.error("系统异常啦")
-            console.log(e)
-          })
+          this.$router.push({path:'/home/to'})
+          // var from = new FormData();
+          // from.append('grant_type','password')
+          // from.append('client_secret','app')
+          // from.append('client_id','app')
+          // from.append('username',this.ruleForm.pass)
+          // from.append('password',this.ruleForm.password)
+          // this.$http.post("/oauth/token",from).then(res=>{
+          //   if (res.data.access_token){
+          //     console.log(res.data.authorities[0])
+          //     localStorage.setItem("access_token",res.data.access_token)
+          //     localStorage.setItem("refresh_token",res.data.refresh_token)
+          //     //
+          //   }else {
+          //     this.$message.info("用户名或密码错误")
+          //   }
+          // }).catch(e => {
+          //   this.$message.error("系统异常啦")
+          //   console.log('系统异常',e)
+          // })
         } else {
           console.log('error submit!!');
           return false;

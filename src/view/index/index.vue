@@ -3,7 +3,8 @@
        :class="{'basic-container--block':block}">
     <el-card style="margin: auto">
       <slot>
-        <router-view></router-view>
+        <router-view>
+        </router-view>
       </slot>
     </el-card>
   </div>
