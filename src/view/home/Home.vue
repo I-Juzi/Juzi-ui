@@ -143,7 +143,7 @@ export default {
             this.activePath = activePath
         },
         t_1() {
-            alert('111')
+            alert('11111111')
         }
     },
     created() {
