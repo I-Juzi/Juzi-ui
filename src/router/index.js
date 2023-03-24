@@ -25,16 +25,16 @@ const router =  new Router({
       children:[
         {
           path:'/home/to',
-          name:'to',
+          name:'首页',
           component:()=>import('@/view/home/To.vue')
         },
         {
           path:'/home/test',
-          name:'test',
+          name:'测试',
           component:()=>import('@/view/test/index.vue')
         },{
           path:'/home/info',
-          name:'info',
+          name:'用户信息',
           component:()=>import('@/view/userinfo/index.vue')
         }
       ]

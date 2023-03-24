@@ -148,7 +148,6 @@ export default {
     },
     created() {
         this.activePath = sessionStorage.getItem("activePath") ? sessionStorage.getItem("activePath") : "/index";
-
     }
 }
 </script>
