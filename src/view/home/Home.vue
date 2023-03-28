@@ -20,7 +20,7 @@
                                 <div @click="$router.push('/home/info')">
                                     <el-dropdown-item icon="el-icon-edit">信息修改</el-dropdown-item>
                                 </div>
-                                <div @click="$router.push('/')">
+                                <div @click="logOff()">
                                     <el-dropdown-item icon="el-icon-s-operation">退出登录</el-dropdown-item>
                                 </div>
                             </el-dropdown-menu>
@@ -124,6 +124,15 @@ export default {
     mounted() {
     },
     methods: {
+        logOff(){
+
+            localStorage.removeItem('token')
+
+            this.$router.push('/')
+
+            this.$message.success('登出成功')
+
+        },
         handleIsCollapse() {
             this.isCollapse = !this.isCollapse
             if (this.isCollapse) {
